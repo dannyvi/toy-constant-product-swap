@@ -200,6 +200,5 @@ class ConstantProductPool:
         _, id_total, new_id_total, _, cont_total, new_cont_total, _ = self._forecast_swap(paid_token)
         pre_trade_price = id_total / cont_total
         post_trade_price = new_id_total / new_cont_total
-        print(post_trade_price, pre_trade_price)
         impact = abs(post_trade_price - pre_trade_price) / pre_trade_price
         return impact
