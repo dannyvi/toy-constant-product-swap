@@ -52,6 +52,13 @@ class TestConstantProductPool(unittest.TestCase):
         self.assertAlmostEqual(usdc_token.amt, 5.0)
         self.assert_pool_state(7.2, 45.0, 7.2 * 45.0, 45.0)    # product changed to 324.00, decremented by LP withdraw
 
+    def test_swap_larger_amt(self):
+        usdc_token = SwapToken(SwapTokenType.USDC, 160.0)
+        self.assertAlmostEqual(self.pool._product, 400.0)
+        btc_token = self.pool.swap(usdc_token)
+        self.assertAlmostEqual(btc_token.amt, 8 - 0.024)
+        self.assert_pool_state(2.0, 200.0, 400.0, 50.0)
+
     def test_price_and_impact(self):
         btc_token = SwapToken(SwapTokenType.USDC, 10)
         price = self.pool.get_price(btc_token)
