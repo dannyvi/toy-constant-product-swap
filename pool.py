@@ -184,8 +184,6 @@ class ConstantProductPool:
         self._validate_current_product()
         ident_type, ident_total = self._ident_type(paid_token), self._ident_total(paid_token)
         contrary_type, contrary_total = self._contrary_type(paid_token), self._contrary_total(paid_token)
-        if paid_token.amt >= ident_total:
-            raise TransactionError('Token amount of currency was too large.')
         ident_total_after_paid = ident_total + paid_token.amt
         contrary_total_after_paid = self._product / ident_total_after_paid
         cashed_token_amt = contrary_total - contrary_total_after_paid
